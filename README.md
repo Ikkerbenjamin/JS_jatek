@@ -52,4 +52,4 @@ Kszinó hangulat.
 4. Játékszabályok oldal
 Egy külön oldal vagy modális ablak, amely részletesen elmagyarázza mindkét játék szabályait és működését.
 
-Ez az egyszerű, de szórakoztató platform lehetőséget ad arra, hogy a felhasználók gyorsan belemerüljenek egy izgalmas kihívásba, miközben könnyen váltogathatnak a két játék között."# JS_jatek" 
+Ez az egyszerű, de szórakoztató platform lehetőséget ad arra, hogy a felhasználók gyorsan belemerüljenek egy izgalmas kihívásba, miközben könnyen váltogathatnak a két játék között.
