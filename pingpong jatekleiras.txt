@@ -1,0 +1,32 @@
+Játék Leírása
+A játék egy klasszikus ping-pong stílusú képernyős játék, amelyet két játékos játszhat. Az egyik játékos irányítja a bal oldali ütőt, a másik pedig a jobb oldalit. A cél az, hogy a labdát úgy irányítsuk, hogy az áthaladjon az ellenfél oldalán, miközben elkerüljük, hogy a saját oldalunkra kerüljön.
+
+Szabályok
+
+Játékosok irányítása:
+A bal oldali ütőt a "W" (fel) és "S" (le) billentyűkkel lehet mozgatni.
+A jobb oldali ütőt a felnyíl "↑" és lenyíl "↓" billentyűkkel lehet mozgatni.
+
+Pontszerzés:
+Ha a labda áthalad az egyik játékos oldalán (a bal vagy jobb szélen), a másik játékos egy pontot szerez.
+A játék akkor ér véget, ha valamelyik játékos eléri a 11 pontot.
+
+Győzelem:
+Az a játékos nyer, aki először éri el a 11 pontot.
+A győztes üzenet megjelenik a képernyőn, és a játék újraindítható az "Indítás" gombbal.
+
+Labda:
+A labda folyamatosan mozog a pályán, és az ütők visszapattintják azt.
+Ha a labda ütközik az ütővel, az irányt változtat, és sebessége növekszik.
+Ha a labda eléri a pálya szélét, a megfelelő játékos pontot szerez, és a labda újra középen jelenik meg.
+
+Játék újraindítása:
+A "Visszaállítás" majd az "Indítás" gombbal új játékot indíthatsz, ahol a pontszámok és a játékmenet kezdődnek elölről.
+Cél:
+A cél az, hogy megverjük az ellenfelünket azáltal, hogy több pontot szerzünk, mint ő, és elérjük a 11 pontot.
+
+
+
+
+
+

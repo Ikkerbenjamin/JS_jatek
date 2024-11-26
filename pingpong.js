@@ -101,39 +101,39 @@ function labdaRajzolasa(x, y) {
 
 function utkozesEllenorzes() {
     
-        // Falakkal való ütközés (felső és alsó szegély)
+        
         if (labdaY <= 0 + labdaSugar || labdaY >= jatekMagassag - labdaSugar) {
-            labdaYIrany *= -1; // Megfordítjuk a Y-irányt
+            labdaYIrany *= -1; 
         }
 
-        // Bal ütővel való ütközés
+       
         if (labdaX - labdaSugar <= uto1.x + uto1.szelesseg) {
             if (labdaY + labdaSugar >= uto1.y && labdaY - labdaSugar <= uto1.y + uto1.magassag) {
-                labdaXIrany *= -1; // X irány megfordítása
-                labdaSebesseg += 0.5; // Sebesség növelése
-                labdaX = uto1.x + uto1.szelesseg + labdaSugar; // Biztosítjuk, hogy ne ragadjon be
+                labdaXIrany *= -1; 
+                labdaSebesseg += 0.5; 
+                labdaX = uto1.x + uto1.szelesseg + labdaSugar; 
             }
         }
 
-        // Jobb ütővel való ütközés
+       
         if (labdaX + labdaSugar >= uto2.x) {
             if (labdaY + labdaSugar >= uto2.y && labdaY - labdaSugar <= uto2.y + uto2.magassag) {
-                labdaXIrany *= -1; // X irány megfordítása
-                labdaSebesseg += 0.5; // Sebesség növelése
-                labdaX = uto2.x - labdaSugar; // Biztosítjuk, hogy ne ragadjon be
+                labdaXIrany *= -1; 
+                labdaSebesseg += 0.5; 
+                labdaX = uto2.x - labdaSugar; 
             }
         }
 
-        // Pontszerzés (ha a labda eléri a bal vagy jobb falat)
+       
         if (labdaX < 0) {
             jatekos2Pont++;
             pontszamFrissitese();
-            labdaLetrehozasa(); // Új labda a középpontban
+            labdaLetrehozasa(); 
         }
         if (labdaX > jatekSzelesseg) {
             jatekos1Pont++;
             pontszamFrissitese();
-            labdaLetrehozasa(); // Új labda a középpontban
+            labdaLetrehozasa(); 
         
     }
     
