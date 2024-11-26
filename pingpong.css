@@ -1,0 +1,22 @@
+#jatekTartalom {
+    text-align: center;
+  }
+  
+  #jatekTer {
+    border: 3px solid black;
+  }
+  
+  #pontszamSzoveg {
+    font-family: "Consolas", monospace;
+    font-size: 30px;
+    margin: 10px 0;
+  }
+  
+  button {
+    font-family: "Arial", sans-serif;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
