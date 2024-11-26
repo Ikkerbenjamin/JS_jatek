@@ -12,6 +12,7 @@ Egy ikon, amely kártyalapokat idéz.
 Egy egyszerű navigációs menü található az oldal tetején, amely lehetővé teszi:
 Visszalépést a főoldalra.
 Játékszabályok megtekintését.
+
 2. Ping-Pong játék
 Játékmenet:
 
