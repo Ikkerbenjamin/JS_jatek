@@ -13,7 +13,7 @@ const labdaSzine = "white";
 const labdaSzegelySzine = "black";
 const labdaSugar = 12.5;
 const utoSebesseg = 50;
-const maxPontszam = 10;
+const maxPontszam = 11;
 let idozito;
 let labdaSebesseg;
 let labdaX = jatekSzelesseg / 2;
@@ -100,35 +100,43 @@ function labdaRajzolasa(x, y) {
 }
 
 function utkozesEllenorzes() {
-  if (labdaY <= 0 + labdaSugar || labdaY >= jatekMagassag - labdaSugar) {
-    labdaYIrany *= -1;
-  }
-  if (labdaX <= 0) {
-    jatekos2Pont++;
-    pontszamFrissitese();
-    labdaLetrehozasa();
-  }
-  if (labdaX >= jatekSzelesseg) {
-    jatekos1Pont++;
-    pontszamFrissitese();
-    labdaLetrehozasa();
-  }
-  if (
-    labdaX <= uto1.x + uto1.szelesseg + labdaSugar &&
-    labdaY > uto1.y &&
-    labdaY < uto1.y + uto1.magassag
-  ) {
-    labdaXIrany *= -1;
-    labdaSebesseg += 0.5;
-  }
-  if (
-    labdaX >= uto2.x - labdaSugar &&
-    labdaY > uto2.y &&
-    labdaY < uto2.y + uto2.magassag
-  ) {
-    labdaXIrany *= -1;
-    labdaSebesseg += 0.5;
-  }
+    
+        // Falakkal való ütközés (felső és alsó szegély)
+        if (labdaY <= 0 + labdaSugar || labdaY >= jatekMagassag - labdaSugar) {
+            labdaYIrany *= -1; // Megfordítjuk a Y-irányt
+        }
+
+        // Bal ütővel való ütközés
+        if (labdaX - labdaSugar <= uto1.x + uto1.szelesseg) {
+            if (labdaY + labdaSugar >= uto1.y && labdaY - labdaSugar <= uto1.y + uto1.magassag) {
+                labdaXIrany *= -1; // X irány megfordítása
+                labdaSebesseg += 0.5; // Sebesség növelése
+                labdaX = uto1.x + uto1.szelesseg + labdaSugar; // Biztosítjuk, hogy ne ragadjon be
+            }
+        }
+
+        // Jobb ütővel való ütközés
+        if (labdaX + labdaSugar >= uto2.x) {
+            if (labdaY + labdaSugar >= uto2.y && labdaY - labdaSugar <= uto2.y + uto2.magassag) {
+                labdaXIrany *= -1; // X irány megfordítása
+                labdaSebesseg += 0.5; // Sebesség növelése
+                labdaX = uto2.x - labdaSugar; // Biztosítjuk, hogy ne ragadjon be
+            }
+        }
+
+        // Pontszerzés (ha a labda eléri a bal vagy jobb falat)
+        if (labdaX < 0) {
+            jatekos2Pont++;
+            pontszamFrissitese();
+            labdaLetrehozasa(); // Új labda a középpontban
+        }
+        if (labdaX > jatekSzelesseg) {
+            jatekos1Pont++;
+            pontszamFrissitese();
+            labdaLetrehozasa(); // Új labda a középpontban
+        
+    }
+    
 }
 
 function iranyValtoztatasa(event) {
