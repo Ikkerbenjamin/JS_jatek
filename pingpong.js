@@ -48,13 +48,13 @@ function jatekInditasa() {
 function kovetkezoKor() {
   idozito = setTimeout(() => {
     tablaTorlese();
+    if (!gyoztesVan()) {
+      kovetkezoKor();
+    }
     utokRajzolasa();
     labdaMozgatasa();
     labdaRajzolasa(labdaX, labdaY);
     utkozesEllenorzes();
-    if (!gyoztesVan()) {
-      kovetkezoKor(); 
-    }
   }, 10);
 }
 
