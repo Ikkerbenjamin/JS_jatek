@@ -1,4 +1,4 @@
-A játék célja, hogy a felhasználók két izgalmas mini-játék közül választhassanak egy központi weboldalon: Ping-Pong vagy Blackjack. A játékok egyszerűek, szórakoztatóak, és gyors kihívásokra épülnek.
+A játék célja, hogy a felhasználók két izgalmas mini-játék közül választhassanak egy központi weboldalon: Ping-Pong vagy Blackjack. A játékok egyszerűek, szórakoztatóak, és gyors kihívásokra épülnek. Amikor a felhasználó belép a weboldalra igazolnia kell, hogy betöltötte e már a 18. életévét. Amennyiben nem, a felhasználó csak a Ping-Pong játékkal tud majd játszani.
 
 1. A főoldal
 Fő tartalom:
