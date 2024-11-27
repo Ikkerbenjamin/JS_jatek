@@ -1,0 +1,96 @@
+body {
+    background-image: url(casino-background.jpg);
+    background-size: 150%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.table {
+    position: relative;
+    top: calc(50% - 250px);
+    left: calc(50% - 500px);
+    background-color: rgb(3, 85, 44);
+    width: 1000px;
+    height: 500px;
+    border-radius: 700px;
+    border: 10px solid brown;
+}
+
+.dealer-name {
+    position: relative;
+    text-align: center;
+    margin: auto;
+    background-color: white;
+    width: 30%;
+    border-radius: 20px;
+}
+
+.dealer {
+    text-align: center;
+    position: relative;
+    top: 25px;
+}
+
+.deck {
+    position: absolute;
+    top: 40%;
+    left: 75%;
+    width: 10%;
+}
+
+.deck-img {
+    width: 70px;
+}
+
+button {
+    width: 150px;
+}
+
+.buttons {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-hit {
+    background-color: green;
+    border: 3px solid darkgreen;
+    border-radius: 20px;
+}
+
+.button-stand {
+    background-color: red;
+    border: 3px solid darkred;
+    border-radius: 20px;
+}
+
+.buttons-centerer {
+    display: flex;
+    justify-content: center;
+}
+
+.dealer-hand {
+    height: 101px;
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.player-hand {
+    height: 101px;
+    position: absolute;
+    top: 65%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.card{
+    width: 70px;
+}
+.card-img{
+    width: 70px;
+}
