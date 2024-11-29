@@ -13,23 +13,24 @@
             <img src="Untitled-removebg-preview.png" alt="">
         </div>
         <div class="table">
-            <div class="dealer-points"></div>
+            <div class="dealer-points">0</div>
             <div class="dealer-status"></div>
             <div class="dealer-hand">
 
             </div>
+            <div class="player-money">Pénz: <br></div>
             <div class="deck"><img class="deck-img" src="cards/Card_back_01.svg.png" alt=""></div>
             <div class="player-hand">
 
             </div>
             <div class="player-status"></div>
-            <div class="player-points"></div>
-            <div class="player-money"></div>
+            <div class="player-points">0</div>
         </div>
     </div>
     <div class="buttons-centerer">
         <div class="buttons">
             <button class="button-hit" onclick="playerDraw(), dealerDraw()"><h1>Hit</h1></button>
+            <button class="button-new" onclick="gameStart()"><h1>New game</h1></button>
             <button class="button-stand" onclick="stand()"><h1>Stand</h1></button>
         </div>
     </div>

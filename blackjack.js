@@ -1,4 +1,5 @@
-const cards = ["English_pattern_2_of_clubs.svg",
+const cards = [
+    "English_pattern_2_of_clubs.svg",
     "English_pattern_2_of_diamonds.svg",
     "English_pattern_2_of_hearts.svg",
     "English_pattern_2_of_spades.svg",
@@ -62,8 +63,14 @@ let dealerHand = []
 let money = sessionStorage.getItem("money") || 1000
 
 function gameStart() {
-    document.querySelector(".button-stand").addEventListener(onclick, stand)
+    document.querySelector(".player-money").innerHTML = "Money: <br>" +  money
+    document.querySelector(".dealer-status").innerText = ""
+    document.querySelector(".player-status").innerText = ""
+    isStanding = false
     deck = [...cards]
+    document.querySelector(".button-new").style.display = "none"
+    document.querySelector(".player-points").innerText = "0"
+    document.querySelector(".dealer-points").innerText = "0"
     playerHand = []
     dealerHand = []
     document.querySelector(".player-hand").innerHTML = ""
@@ -93,10 +100,11 @@ function playerDraw() {
                         if (value[2] == "ace") {
                             value[2] = 11
                         }
-                        newContent.className += "card-img "
+                        newContent.className += "card-img-2 "
                         newContent.className += value[2]
 
                         document.querySelector(".player-points").innerText = points + Number(value[2])
+                        console.log(playerHand.length)
 
                         playerHand.push(cards[index])
                         deck.splice(index, 1)
@@ -113,8 +121,7 @@ function playerDraw() {
     }
 }
 function dealerDraw() {
-    if (shouldDealerDraw()) {
-
+    if (shouldDealerDraw() || dealerHand.length < 2) {
         let points = Number(document.querySelector(".dealer-points").innerText)
         if (dealerHand.length < 8 && points < 21) {
             let drawnCard = getRandomInt(deck.length);
@@ -125,6 +132,7 @@ function dealerDraw() {
                         newContent = document.createElement("img");
                         newContent.src = "cards/" + deck[index];
                         const value = deck[index].split("_")
+ 
                         if (value[2] == "jack" || value[2] == "queen" || value[2] == "king") {
                             value[2] = 10
                         }
@@ -136,8 +144,9 @@ function dealerDraw() {
 
                         newContent.className += "card-img "
                         newContent.className += value[2]
-
+                        
                         document.querySelector(".dealer-points").innerText = points + value[2]
+                        console.log(document.querySelector(".dealer-points").innerText)
 
                         dealerHand.push(cards[index])
                         deck.splice(index, 1)
@@ -201,6 +210,8 @@ function stand() {
         let points = Number(document.querySelector(".dealer-points").innerText)
         document.querySelector(".dealer-points").innerText = points + Number(faceDownCard.classList[1])
         faceDownCard.src = "cards/" + dealerHand[0]
+        document.querySelector(".button-new").style.display = "inline"
+        winner()
     }
 }
 
@@ -208,11 +219,37 @@ function shouldDealerDraw() {
     let faceDownCardValue = Number(document.querySelector(".face-down").classList[1]);
     let dealerPoints = Number(document.querySelector(".dealer-points").innerText) + faceDownCardValue
     let playerPoints = Number(document.querySelector(".player-points").innerText)
-    console.log(faceDownCardValue + dealerPoints)
-    if (dealerPoints <= 17 || dealerPoints <= playerPoints) {
-        return true
+    if (dealerPoints <= 17 ) 
+        if (dealerPoints <= playerPoints) {
+            if(playerPoints < 22){
+                return true
+            }
     }
     else {
         return false
+    }
+}
+
+function winner()
+{
+    let dealerPoints = Number(document.querySelector(".dealer-points").innerText)
+    let playerPoints = Number(document.querySelector(".player-points").innerText)
+    if (((dealerPoints > playerPoints) && dealerPoints < 22) || playerPoints > 21) {
+        document.querySelector(".dealer-status").innerText = "Win"
+        document.querySelector(".dealer-status").style.color = "green"
+        document.querySelector(".player-status").innerText = "Lost"
+        document.querySelector(".player-status").style.color = "red"
+    }
+    if (dealerPoints == playerPoints) {
+        document.querySelector(".dealer-status").innerText = "Draw"
+        document.querySelector(".dealer-status").style.color = "gray"
+        document.querySelector(".player-status").innerText = "Draw"
+        document.querySelector(".player-status").style.color = "gray"
+    }
+    if (((dealerPoints < playerPoints) && playerPoints < 22) || dealerPoints > 21)  {
+        document.querySelector(".dealer-status").innerText = "Lost"
+        document.querySelector(".dealer-status").style.color = "red"
+        document.querySelector(".player-status").innerText = "Win"
+        document.querySelector(".player-status").style.color = "green"
     }
 }
