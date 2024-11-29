@@ -60,9 +60,10 @@ let deck = [...cards]
 let playerHand = []
 let dealerHand = []
 
-let money = sessionStorage.getItem("money") || 1000
+let money = Number(sessionStorage.getItem("money")) || 1000
 
 function gameStart() {
+    document.querySelector(".button-bet").style.display = "inline"
     document.querySelector(".player-money").innerHTML = "Money: <br>" +  money
     document.querySelector(".dealer-status").innerText = ""
     document.querySelector(".player-status").innerText = ""
@@ -104,7 +105,6 @@ function playerDraw() {
                         newContent.className += value[2]
 
                         document.querySelector(".player-points").innerText = points + Number(value[2])
-                        console.log(playerHand.length)
 
                         playerHand.push(cards[index])
                         deck.splice(index, 1)
@@ -146,7 +146,6 @@ function dealerDraw() {
                         newContent.className += value[2]
                         
                         document.querySelector(".dealer-points").innerText = points + value[2]
-                        console.log(document.querySelector(".dealer-points").innerText)
 
                         dealerHand.push(cards[index])
                         deck.splice(index, 1)
@@ -204,14 +203,36 @@ function stand() {
         for (let index = 0; index < 8; index++) {
             dealerDraw()
         }
-        sessionStorage.setItem("money", money)
         isStanding = !isStanding
         let faceDownCard = document.querySelector(".face-down");
         let points = Number(document.querySelector(".dealer-points").innerText)
         document.querySelector(".dealer-points").innerText = points + Number(faceDownCard.classList[1])
         faceDownCard.src = "cards/" + dealerHand[0]
         document.querySelector(".button-new").style.display = "inline"
-        winner()
+        let playerIsTheWinner = winner()
+        console.log(playerIsTheWinner)
+        money = Number(money)
+        if (playerIsTheWinner == "win") {
+            document.querySelector(".dealer-status").innerText = "Lost"
+            document.querySelector(".dealer-status").style.color = "red"
+            document.querySelector(".player-status").innerText = "Win"
+            document.querySelector(".player-status").style.color = "green"
+            money += betAmount
+        }
+        if (playerIsTheWinner == "draw"){
+            document.querySelector(".dealer-status").innerText = "Draw"
+            document.querySelector(".dealer-status").style.color = "gray"
+            document.querySelector(".player-status").innerText = "Draw"
+            document.querySelector(".player-status").style.color = "gray"
+        }
+        if (playerIsTheWinner == "lost"){
+            document.querySelector(".dealer-status").innerText = "Win"
+            document.querySelector(".dealer-status").style.color = "green"
+            document.querySelector(".player-status").innerText = "Lost"
+            document.querySelector(".player-status").style.color = "red"
+            money -= betAmount
+        }
+        sessionStorage.setItem("money", money)
     }
 }
 
@@ -235,21 +256,50 @@ function winner()
     let dealerPoints = Number(document.querySelector(".dealer-points").innerText)
     let playerPoints = Number(document.querySelector(".player-points").innerText)
     if (((dealerPoints > playerPoints) && dealerPoints < 22) || playerPoints > 21) {
-        document.querySelector(".dealer-status").innerText = "Win"
-        document.querySelector(".dealer-status").style.color = "green"
-        document.querySelector(".player-status").innerText = "Lost"
-        document.querySelector(".player-status").style.color = "red"
+
+        return "lost"
     }
-    if (dealerPoints == playerPoints) {
-        document.querySelector(".dealer-status").innerText = "Draw"
-        document.querySelector(".dealer-status").style.color = "gray"
-        document.querySelector(".player-status").innerText = "Draw"
-        document.querySelector(".player-status").style.color = "gray"
+    if (dealerPoints == playerPoints || (dealerPoints > 21 && playerPoints > 21)) {
+
+        return "draw"
     }
     if (((dealerPoints < playerPoints) && playerPoints < 22) || dealerPoints > 21)  {
-        document.querySelector(".dealer-status").innerText = "Lost"
-        document.querySelector(".dealer-status").style.color = "red"
-        document.querySelector(".player-status").innerText = "Win"
-        document.querySelector(".player-status").style.color = "green"
+
+        return "win"
     }
+}
+
+function showBet(){
+    document.querySelector(".bet-amount").style.display = "inline"
+    document.querySelector(".bet-ok").style.display = "inline"
+}
+function hideBet(){
+    document.querySelector(".bet-amount").style.display = "none"
+    document.querySelector(".bet-ok").style.display = "none"
+    document.querySelector(".button-bet").style.display = "none"
+}
+
+let betAmount = 100
+function bet(input){
+    debugger
+    sleep(20).then(() => {     
+        betAmount = Number(input.value)
+        if(betAmount > money)
+        {
+            betAmount = money
+            input.value = money
+        }
+        if(betAmount < 0)
+        {
+            betAmount = 0
+            input.value = 0
+        }
+    });
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+function resetMoney(){
+    money = 1000
 }
