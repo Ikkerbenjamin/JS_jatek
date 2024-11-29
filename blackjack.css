@@ -75,6 +75,13 @@ button:hover{
     border-radius: 20px;
 }
 
+.button-restart {
+    background-color: gray;
+    border: 3px solid black;
+    border-radius: 20px;
+    opacity: 0;
+}
+
 .button-new {
     background-color: yellow;
     border: 3px solid orange;
@@ -184,7 +191,19 @@ button:hover{
     width: 200px;
     border-radius: 20px;
     border: 3px solid brown;
-    position: relative;
+    position: absolute;
+    top: calc(40% - 40px);
+    left: 5%;
+    font-size: xx-large;
+}
+
+.bet-counter{
+    background-color: white;
+    height: 80px;
+    width: 200px;
+    border-radius: 20px;
+    border: 3px solid brown;
+    position: absolute;
     top: calc(50% - 40px);
     left: 5%;
     font-size: xx-large;

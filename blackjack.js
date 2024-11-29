@@ -54,7 +54,7 @@ const cards = [
 ]
 
 let isStanding = false
-
+let betAmount = 100
 let deck = [...cards]
 
 let playerHand = []
@@ -63,8 +63,20 @@ let dealerHand = []
 let money = Number(sessionStorage.getItem("money")) || 1000
 
 function gameStart() {
+    betAmount = 100
+    if (betAmount > money)
+        {
+            betAmount = money
+        }
+    if (money == 0)
+        {
+            money = 100
+            alert("You have 0 money but here is a bit so you can play :)")
+        }
+
     document.querySelector(".button-bet").style.display = "inline"
     document.querySelector(".player-money").innerHTML = "Money: <br>" +  money
+    document.querySelector(".bet-counter").innerHTML = "Bet: <br>" +  betAmount
     document.querySelector(".dealer-status").innerText = ""
     document.querySelector(".player-status").innerText = ""
     isStanding = false
@@ -82,8 +94,20 @@ function gameStart() {
     playerDraw();
 
 }
+
+function endScreen()
+{
+
+}
+function restartGame()
+{
+    gameStart()
+    resetMoney()
+}
+
 function playerDraw() {
     if (!isStanding) {
+
 
         let points = Number(document.querySelector(".player-points").innerText)
         if (playerHand.length < 8 && points < 21) {
@@ -279,7 +303,7 @@ function hideBet(){
     document.querySelector(".button-bet").style.display = "none"
 }
 
-let betAmount = 100
+
 function bet(input){
     debugger
     sleep(20).then(() => {     
@@ -294,6 +318,7 @@ function bet(input){
             betAmount = 0
             input.value = 0
         }
+        document.querySelector(".bet-counter").innerHTML = "Bet: <br>" +  betAmount
     });
 }
 function sleep(ms) {
@@ -302,4 +327,5 @@ function sleep(ms) {
 
 function resetMoney(){
     money = 1000
+    document.querySelector(".player-money").innerHTML = "Money: <br>" +  money
 }
