@@ -12,6 +12,7 @@ Egy ikon, amely kártyalapokat idéz.
 Egy egyszerű navigációs menü található az oldal tetején, amely lehetővé teszi:
 Visszalépést a főoldalra.
 Játékszabályok megtekintését.
+Szerkesztők megtekintését.
 
 2. Ping-Pong játék
 Játékmenet:
@@ -51,6 +52,16 @@ Színes kártyalapok.
 Kszinó hangulat.
 
 4. Játékszabályok oldal
-Egy külön oldal vagy modális ablak, amely részletesen elmagyarázza mindkét játék szabályait és működését.
+Egy külön oldal, amely részletesen elmagyarázza mindkét játék szabályait és működését.
 
 Ez az egyszerű, de szórakoztató platform lehetőséget ad arra, hogy a felhasználók gyorsan belemerüljenek egy izgalmas kihívásba, miközben könnyen váltogathatnak a két játék között.
+
+
+Szerkesztők oldal
+
+Egy külön oldal amely, kiírja a szerkesztőket.
+
+Brückner Artúr Benedek: BlackJack játék fejlesztése
+Kiss Marcell: Főoldal fejlesztése, tervek elkészítése Figma-ban
+Ikker Benjámin: Ping-Pong játék fejleszése, játékleírások, működésleírás
+
