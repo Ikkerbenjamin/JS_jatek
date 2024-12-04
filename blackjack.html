@@ -31,13 +31,13 @@
     <div class="buttons-centerer">
         <div class="buttons">
             <button class="button-hit" onclick="playerDraw(), dealerDraw(), hideBet()"><h1>Hit</h1></button>
-            <button class="button-new" onclick="gameStart()"><h1>New game</h1></button>
+            <button class="button-new" onclick="gameSetup()"><h1>New game</h1></button>
             <button class="button-stand" onclick="stand()"><h1>Stand</h1></button>
             <button class="button-bet" onclick="showBet()"><h1>Bet</h1></button>
         </div>
     </div>
     <input type="number" class="bet-amount" onkeypress="bet(this)">
-    <button class="bet-ok" onclick="hideBet()">OK</button>
+    <button class="bet-ok" onclick="hideBet(), gameStart()">OK</button>
     <script src="blackjack.js"></script>
 </body>
 </html>

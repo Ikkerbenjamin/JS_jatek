@@ -59,24 +59,23 @@ let deck = [...cards]
 
 let playerHand = []
 let dealerHand = []
+let isBetSet = false
 
 let money = Number(sessionStorage.getItem("money")) || 1000
 
-function gameStart() {
-    betAmount = 100
-    if (betAmount > money)
-        {
-            betAmount = money
-        }
-    if (money == 0)
-        {
-            money = 100
-            alert("You have 0 money but here is a bit so you can play :)")
-        }
 
+function gameSetup() {
+    document.querySelector(".player-money").innerHTML = "Money: <br>" + money
+    document.querySelector(".bet-counter").innerHTML = "Bet: <br>" + betAmount
+    betAmount = 100
+    if (betAmount > money) {
+        betAmount = money
+    }
+    if (money == 0) {
+        money = 100
+        alert("You have 0 money but here is a bit so you can play :)")
+    }
     document.querySelector(".button-bet").style.display = "inline"
-    document.querySelector(".player-money").innerHTML = "Money: <br>" +  money
-    document.querySelector(".bet-counter").innerHTML = "Bet: <br>" +  betAmount
     document.querySelector(".dealer-status").innerText = ""
     document.querySelector(".player-status").innerText = ""
     isStanding = false
@@ -88,104 +87,138 @@ function gameStart() {
     dealerHand = []
     document.querySelector(".player-hand").innerHTML = ""
     document.querySelector(".dealer-hand").innerHTML = ""
-    playerDraw();
-    dealerDrawFaceDown()
-    dealerDraw();
-    playerDraw();
+}
+function gameStart() {
+    document.querySelector(".player-money").innerHTML = "Money: <br>" + money
+    document.querySelector(".bet-counter").innerHTML = "Bet: <br>" + betAmount
+    if (isBetSet) {
+        isBetSet = false
+        betAmount = 100
+        if (betAmount > money) {
+            betAmount = money
+        }
+        if (money == 0) {
+            money = 100
+            alert("You have 0 money but here is a bit so you can play :)")
+        }
+        document.querySelector(".button-bet").style.display = "inline"
+        document.querySelector(".dealer-status").innerText = ""
+        document.querySelector(".player-status").innerText = ""
+        isStanding = false
+        deck = [...cards]
+        document.querySelector(".button-new").style.display = "none"
+        document.querySelector(".player-points").innerText = "0"
+        document.querySelector(".dealer-points").innerText = "0"
+        playerHand = []
+        dealerHand = []
+        document.querySelector(".player-hand").innerHTML = ""
+        document.querySelector(".dealer-hand").innerHTML = ""
+        sleep(0).then(() => {
+
+            playerDraw();
+        });
+        sleep(100).then(() => {
+
+            dealerDrawFaceDown()
+        });
+        sleep(200).then(() => {
+
+            dealerDraw();
+        });
+        sleep(300).then(() => {
+
+            playerDraw();
+        });
+    }
 
 }
 
-function endScreen()
-{
+function endScreen() {
 
 }
-function restartGame()
-{
+function restartGame() {
     gameStart()
     resetMoney()
 }
 
 function playerDraw() {
     if (!isStanding) {
+        sleep(100).then(() => {
+            let points = Number(document.querySelector(".player-points").innerText)
+            if (playerHand.length < 8 && points < 21) {
+                let drawnCard = getRandomInt(deck.length);
+                const newDiv = document.createElement("div");
+                for (let index = 0; index < deck.length; index++) {
+                    if (drawnCard == index) {
+                        if (deck[index] != 0) {
+                            newContent = document.createElement("img");
+                            newContent.src = "cards/" + deck[index];
+                            const value = deck[index].split("_")
+                            if (value[2] == "jack" || value[2] == "queen" || value[2] == "king") {
+                                value[2] = 10
+                            }
+                            if (value[2] == "ace") {
+                                value[2] = 11
+                            }
 
-
-        let points = Number(document.querySelector(".player-points").innerText)
-        if (playerHand.length < 8 && points < 21) {
-            let drawnCard = getRandomInt(deck.length);
-            const newDiv = document.createElement("div");
-            for (let index = 0; index < deck.length; index++) {
-                if (drawnCard == index) {
-                    if (deck[index] != 0) {
-                        newContent = document.createElement("img");
-                        newContent.src = "cards/" + deck[index];
-                        const value = deck[index].split("_")
-                        if (value[2] == "jack" || value[2] == "queen" || value[2] == "king") {
-                            value[2] = 10
+                            newContent.className += "card-img-2 "
+                            newContent.className += value[2]
+                            playerHand.push(cards[index])
+                            document.querySelector(".player-points").innerText = points + Number(value[2])
+                            changeAceValue(playerHand, "player")
+                            deck.splice(index, 1)
                         }
-                        if (value[2] == "ace") {
-                            value[2] = 11
-                        }
-                        newContent.className += "card-img-2 "
-                        newContent.className += value[2]
-
-                        document.querySelector(".player-points").innerText = points + Number(value[2])
-
-                        playerHand.push(cards[index])
-                        deck.splice(index, 1)
-                    }
-                    else {
-                        let drawnCard = getRandomInt(deck.length);
                     }
                 }
+                const currentDiv = document.querySelector(".player-hand");
+                newDiv.appendChild(newContent)
+                currentDiv.appendChild(newDiv)
             }
-            const currentDiv = document.querySelector(".player-hand");
-            newDiv.appendChild(newContent)
-            currentDiv.appendChild(newDiv)
-        }
+        });
     }
 }
 function dealerDraw() {
     if (shouldDealerDraw() || dealerHand.length < 2) {
-        let points = Number(document.querySelector(".dealer-points").innerText)
-        if (dealerHand.length < 8 && points < 21) {
-            let drawnCard = getRandomInt(deck.length);
-            const newDiv = document.createElement("div");
-            for (let index = 0; index < deck.length; index++) {
-                if (drawnCard == index) {
-                    if (deck[index] != 0) {
-                        newContent = document.createElement("img");
-                        newContent.src = "cards/" + deck[index];
-                        const value = deck[index].split("_")
- 
-                        if (value[2] == "jack" || value[2] == "queen" || value[2] == "king") {
-                            value[2] = 10
-                        }
-                        else
-                            if (value[2] == "ace") {
-                                value[2] = 11
+        sleep(200).then(() => {
+            let points = Number(document.querySelector(".dealer-points").innerText)
+            if (dealerHand.length < 8 && points < 21) {
+                let drawnCard = getRandomInt(deck.length);
+                const newDiv = document.createElement("div");
+                for (let index = 0; index < deck.length; index++) {
+                    if (drawnCard == index) {
+                        if (deck[index] != 0) {
+                            newContent = document.createElement("img");
+                            newContent.src = "cards/" + deck[index];
+                            const value = deck[index].split("_")
+
+                            if (value[2] == "jack" || value[2] == "queen" || value[2] == "king") {
+                                value[2] = 10
                             }
-                            else value[2] = Number(value[2])
+                            else
+                                if (value[2] == "ace") {
+                                    value[2] = 11
+                                }
+                                else value[2] = Number(value[2])
 
-                        newContent.className += "card-img "
-                        newContent.className += value[2]
-                        
-                        document.querySelector(".dealer-points").innerText = points + value[2]
+                            newContent.className += "card-img "
+                            newContent.className += value[2]
 
-                        dealerHand.push(cards[index])
-                        deck.splice(index, 1)
-                    }
-                    else {
-                        let drawnCard = getRandomInt(deck.length);
+                            dealerHand.push(cards[index])
+                            document.querySelector(".dealer-points").innerText = points + value[2]
+                            changeAceValue(dealerHand, "dealer")
+
+                            deck.splice(index, 1)
+                        }
                     }
                 }
+                const currentDiv = document.querySelector(".dealer-hand");
+                newDiv.appendChild(newContent)
+                currentDiv.appendChild(newDiv)
             }
-            const currentDiv = document.querySelector(".dealer-hand");
-            newDiv.appendChild(newContent)
-            currentDiv.appendChild(newDiv)
-        }
+        });
     }
-
 }
+
 
 function dealerDrawFaceDown() {
     let drawnCard = getRandomInt(deck.length);
@@ -209,9 +242,6 @@ function dealerDrawFaceDown() {
                 dealerHand.push(cards[index])
                 deck.splice(index, 1)
             }
-            else {
-                let drawnCard = getRandomInt(deck.length);
-            }
         }
     }
     const currentDiv = document.querySelector(".dealer-hand");
@@ -234,7 +264,6 @@ function stand() {
         faceDownCard.src = "cards/" + dealerHand[0]
         document.querySelector(".button-new").style.display = "inline"
         let playerIsTheWinner = winner()
-        console.log(playerIsTheWinner)
         money = Number(money)
         if (playerIsTheWinner == "win") {
             document.querySelector(".dealer-status").innerText = "Lost"
@@ -243,13 +272,13 @@ function stand() {
             document.querySelector(".player-status").style.color = "green"
             money += betAmount
         }
-        if (playerIsTheWinner == "draw"){
+        if (playerIsTheWinner == "draw") {
             document.querySelector(".dealer-status").innerText = "Draw"
             document.querySelector(".dealer-status").style.color = "gray"
             document.querySelector(".player-status").innerText = "Draw"
             document.querySelector(".player-status").style.color = "gray"
         }
-        if (playerIsTheWinner == "lost"){
+        if (playerIsTheWinner == "lost") {
             document.querySelector(".dealer-status").innerText = "Win"
             document.querySelector(".dealer-status").style.color = "green"
             document.querySelector(".player-status").innerText = "Lost"
@@ -264,19 +293,18 @@ function shouldDealerDraw() {
     let faceDownCardValue = Number(document.querySelector(".face-down").classList[1]);
     let dealerPoints = Number(document.querySelector(".dealer-points").innerText) + faceDownCardValue
     let playerPoints = Number(document.querySelector(".player-points").innerText)
-    if (dealerPoints <= 17 ) 
+    if (dealerPoints <= 17)
         if (dealerPoints <= playerPoints) {
-            if(playerPoints < 22){
+            if (playerPoints < 22) {
                 return true
             }
-    }
-    else {
-        return false
-    }
+        }
+        else {
+            return false
+        }
 }
 
-function winner()
-{
+function winner() {
     let dealerPoints = Number(document.querySelector(".dealer-points").innerText)
     let playerPoints = Number(document.querySelector(".player-points").innerText)
     if (((dealerPoints > playerPoints) && dealerPoints < 22) || playerPoints > 21) {
@@ -287,45 +315,54 @@ function winner()
 
         return "draw"
     }
-    if (((dealerPoints < playerPoints) && playerPoints < 22) || dealerPoints > 21)  {
+    if (((dealerPoints < playerPoints) && playerPoints < 22) || dealerPoints > 21) {
 
         return "win"
     }
 }
 
-function showBet(){
+function showBet() {
     document.querySelector(".bet-amount").style.display = "inline"
     document.querySelector(".bet-ok").style.display = "inline"
 }
-function hideBet(){
+function hideBet() {
     document.querySelector(".bet-amount").style.display = "none"
     document.querySelector(".bet-ok").style.display = "none"
     document.querySelector(".button-bet").style.display = "none"
+    isBetSet = true
 }
 
 
-function bet(input){
+function bet(input) {
     debugger
-    sleep(20).then(() => {     
+    sleep(20).then(() => {
         betAmount = Number(input.value)
-        if(betAmount > money)
-        {
+        if (betAmount > money) {
             betAmount = money
             input.value = money
         }
-        if(betAmount < 0)
-        {
+        if (betAmount < 0) {
             betAmount = 0
             input.value = 0
         }
-        document.querySelector(".bet-counter").innerHTML = "Bet: <br>" +  betAmount
+        document.querySelector(".bet-counter").innerHTML = "Bet: <br>" + betAmount
     });
 }
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
+}
 
-function resetMoney(){
+function resetMoney() {
     money = 1000
-    document.querySelector(".player-money").innerHTML = "Money: <br>" +  money
+    document.querySelector(".player-money").innerHTML = "Money: <br>" + money
+}
+function changeAceValue(hand, person) {
+    let points = Number(document.querySelector("." + person + "-points").innerText)
+    for (let index = 0; index < hand.length; index++) {
+        const element = hand[index];
+        const value = element.split("_")
+        if (value[2] == "ace" && points > 21) {
+            document.querySelector("." + person + "-points").innerText = points - 10
+        }
+    }
 }

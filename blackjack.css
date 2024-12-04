@@ -70,7 +70,7 @@ button:hover{
 }
 
 .button-bet {
-    background-color: gray;
+    background-color: lightgray;
     border: 3px solid black;
     border-radius: 20px;
 }
