@@ -97,6 +97,7 @@ button:hover{
 .buttons-centerer {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .dealer-hand {
