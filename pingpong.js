@@ -13,7 +13,7 @@ const labdaSzine = "white";
 const labdaSzegelySzine = "black";
 const labdaSugar = 12.5;
 const utoSebesseg = 50;
-const maxPontszam = 11;
+const maxPontszam = 7;
 let idozito;
 let labdaSebesseg;
 let labdaX = jatekSzelesseg / 2;

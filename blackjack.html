@@ -6,31 +6,39 @@
     <title>BlackJack</title>
     <link rel="stylesheet" href="blackjack.css">
 </head>
-<body onload="gameStart()">
-    <div class="dealer-points"></div>
+<body class="body" onload="gameStart()">
+    <a href="index.html">Kezdőlap</a>
     <h1 class="dealer-name">Oláh Kettes Golf Gusztáv</h1>
     <div>
         <div class="dealer">
             <img src="Untitled-removebg-preview.png" alt="">
         </div>
         <div class="table">
+            <div class="dealer-points">0</div>
+            <div class="dealer-status"></div>
             <div class="dealer-hand">
-
+                
             </div>
             <div class="deck"><img class="deck-img" src="cards/Card_back_01.svg.png" alt=""></div>
             <div class="player-hand">
-
+                
             </div>
+            <div class="player-status"></div>
+            <div class="player-points">0</div>
         </div>
     </div>
+    <div class="player-money">Money: <br></div>
+    <div class="bet-counter"> Bet: <br> 100</div>
     <div class="buttons-centerer">
         <div class="buttons">
-            <button class="button-hit" onclick="playerDraw(), dealerDraw()"><h1>Hit</h1></button>
-            <button class="button-stand" onclick="gameStart()"><h1>Stand</h1></button>
+            <button class="button-hit" onclick="playerDraw(), dealerDraw(), hideBet()"><h1>Hit</h1></button>
+            <button class="button-new" onclick="gameSetup()"><h1>New game</h1></button>
+            <button class="button-stand" onclick="stand()"><h1>Stand</h1></button>
+            <button class="button-bet" onclick="showBet()"><h1>Bet</h1></button>
         </div>
     </div>
-    <div class="player-points"></div>
-    <div class="player-money"></div>
+    <input type="number" class="bet-amount" onkeypress="bet(this)">
+    <button class="bet-ok" onclick="hideBet(), gameStart()">OK</button>
     <script src="blackjack.js"></script>
 </body>
 </html>

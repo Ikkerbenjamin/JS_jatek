@@ -1,10 +1,15 @@
+@font-face {
+    font-family: 'Lobster';
+    src: url('Lobster-Regular.ttf');
+}
 body {
     background-image: url(casino-background.jpg);
     background-size: 150%;
     overflow: hidden;
     text-align: center;
+    opacity: 100%;
+    font-family: "Lobster", sans-serif;
 }
-
 .table {
     position: relative;
     top: calc(50% - 250px);
@@ -44,6 +49,11 @@ body {
 
 button {
     width: 150px;
+    font-family: "Lobster", sans-serif;
+}
+
+button:hover{
+    border: 3px solid white;
 }
 
 .buttons {
@@ -64,9 +74,30 @@ button {
     border-radius: 20px;
 }
 
+.button-bet {
+    background-color: lightgray;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+
+.button-restart {
+    background-color: gray;
+    border: 3px solid black;
+    border-radius: 20px;
+    opacity: 0;
+}
+
+.button-new {
+    background-color: yellow;
+    border: 3px solid orange;
+    border-radius: 20px;
+    display: none;
+}
+
 .buttons-centerer {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .dealer-hand {
@@ -92,5 +123,171 @@ button {
     width: 70px;
 }
 .card-img{
-    width: 70px;
+    animation: draw 3.0s;
+    width: 80px;
+}
+.card-img-2{
+    animation: draw2 3.0s;
+    width: 80px;
+}
+.player-status{
+    position: absolute;
+    top: 90%;
+    left: calc(50% - 50px);
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    width: 100px;
+    font-size: xx-large;
+    border-radius: 20px;
+    border: 3px solid brown;
+    height: 40px;
+}
+.dealer-status{
+    position: absolute;
+    top: 5%;
+    left: calc(50% - 50px);
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    width: 100px;
+    font-size: xx-large;
+    border-radius: 20px;
+    border: 3px solid brown;
+    height: 40px;
+}
+.dealer-points{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    top: 15%;
+    left: 80%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    border: 3px solid brown;
+    text-align: center;
+    font-size: xx-large;
+}
+.player-points{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    top: 75%;
+    left: 80%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    border: 3px solid brown;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.player-money{
+    background-color: white;
+    height: 80px;
+    width: 200px;
+    border-radius: 20px;
+    border: 3px solid brown;
+    position: absolute;
+    top: calc(40% - 40px);
+    left: 5%;
+    font-size: xx-large;
+}
+
+.bet-counter{
+    background-color: white;
+    height: 80px;
+    width: 200px;
+    border-radius: 20px;
+    border: 3px solid brown;
+    position: absolute;
+    top: calc(50% - 40px);
+    left: 5%;
+    font-size: xx-large;
+}
+@keyframes draw{
+    0%{
+        position: absolute;
+        top: 112%;
+        left: 76%;
+    }
+    50%{
+        position: relative;
+        top: 10%;
+        left: 10%;
+    }
+    100%{
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+}
+@keyframes draw2{
+    0%{
+        position: absolute;
+        top: -135%;
+        left: 76%;
+
+    }
+    50%{
+        position: relative;
+        top: -10%;
+        left: 10%;
+    }
+    100%{
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+}
+
+.bet-amount{
+    display: none;
+    position: absolute;
+    top: calc(90%);
+    left: calc(50% - 100px);
+    height: 75x;
+    width: 200px;
+    border-radius: 20px;
+    border: 3px solid black;
+    font-size: xx-large;
+    opacity: 100%;
+    font-family: "Lobster", sans-serif;
+    padding: 5px;
+    padding-left: 10px;
+}
+.bet-ok{
+    display: none;
+    position: absolute;
+    top: calc(90%);
+    left: calc(65% - 100px);
+    border-radius: 20px;
+    border: 3px solid black;
+    font-size: xx-large;
+    padding: 5px;
+    opacity: 100%;
+}
+a{
+    text-decoration: none;
+    border-radius: 20px;
+    border: 2px solid black;
+    background-color: white;
+    padding: 10px;
+    color: black;
+    font-size: xx-large;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+a:hover{
+    text-decoration: underline;
 }
