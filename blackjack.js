@@ -299,6 +299,7 @@ function resetMoney() {
     document.querySelector(".player-money").innerHTML = "Money: <br>" + money
 }
 function changeAceValue(hand, person) {
+    debugger
     let points = Number(document.querySelector("." + person + "-points").innerText)
     for (let index = 0; index < hand.length; index++) {
         const element = hand[index];
@@ -319,9 +320,10 @@ function changeAceValue(hand, person) {
             if (person == "player" && playerAcesUsed < playerAces) {
 
                 document.querySelector("." + person + "-points").innerText = points - 10
+                playerAcesUsed += 1
             }
             if (person == "dealer" && dealerAcesUsed < dealerAces) {
-
+                playerAcesUsed += 1
                 document.querySelector("." + person + "-points").innerText = points - 10
             }
         }
