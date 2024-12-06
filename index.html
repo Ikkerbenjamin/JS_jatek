@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BestGames</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #e0e0e0 !important; /* Szürkébb háttérszín */
+        }
+
+        .navbar a {
+            color: black !important; /* Fekete szín */
+            text-decoration: none !important; /* Aláhúzás eltávolítása */
+        }
+
+        .game-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 300px; /* Magasabb képméret */
+            object-fit: cover;
+        }
+
+        .game-card:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .age-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .age-modal.active {
+            display: flex;
+        }
+
+        .disabled-card {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">BestGames</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Információk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Szerkesztők</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-dark text-white px-3" href="#">Kezdőlap</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <h2 class="text-center mb-4">Játékok</h2>
+        <div class="row">
+            <!-- BlackJack Card -->
+            <div class="col-md-6 mb-4">
+                <div class="game-card" id="blackjackCard">
+                    <img src="index_kepek/blackjack_kep.png" alt="BlackJack">
+                    <div class="p-3">
+                        <h3>BlackJack</h3>
+                        <p id="blackjackDescription">
+                            A játék célja, hogy a lapjaid összege 21 legyen minél kevesebb lapból.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PingPong Card -->
+            <div class="col-md-6 mb-4">
+                <div class="game-card" onclick="window.location.href='pingpong.html'">
+                    <img src="index_kepek/pingponguto.png" alt="PingPong">
+                    <div class="p-3">
+                        <h3>PingPong</h3>
+                        <p>
+                            PingPong, a játék célja hogy a labdát az ellenfél térfelér üsdd, úgy hogy ne tudja visszaütni.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Age Verification Modal -->
+    <div class="age-modal" id="ageModal">
+        <div class="bg-white p-5 rounded text-center">
+            <h2>Elmúltál már 18?</h2>
+            <div class="mt-3">
+                <button id="yesBtn" class="btn btn-success me-3">Igen</button>
+                <button id="noBtn" class="btn btn-danger">Nem</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ageModal = document.getElementById('ageModal');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const blackjackCard = document.getElementById('blackjackCard');
+        const blackjackDescription = document.getElementById('blackjackDescription');
+
+        // Blackjack card click handler
+        blackjackCard.addEventListener('click', () => {
+            // Show age verification modal
+            ageModal.classList.add('active');
+        });
+
+        // Handle "Igen" button click
+        yesBtn.addEventListener('click', () => {
+            ageModal.classList.remove('active');
+            // Redirect to Blackjack page
+            window.location.href = 'blackjack.html';
+        });
+
+        // Handle "Nem" button click
+        noBtn.addEventListener('click', () => {
+            ageModal.classList.remove('active');
+            blackjackCard.classList.add('disabled-card');
+            blackjackDescription.textContent = "Ezzel a játékkal nem játszhatsz.";
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
