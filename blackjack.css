@@ -59,19 +59,22 @@ button:hover{
 .buttons {
     width: 50%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 30px;
 }
 
 .button-hit {
     background-color: green;
     border: 3px solid darkgreen;
     border-radius: 20px;
+    display: none;
 }
 
 .button-stand {
     background-color: red;
     border: 3px solid darkred;
     border-radius: 20px;
+    display:none;
 }
 
 .button-bet {
@@ -108,6 +111,7 @@ button:hover{
     text-align: center;
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
 
 .player-hand {
@@ -118,9 +122,11 @@ button:hover{
     text-align: center;
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
 .card{
     width: 70px;
+    margin: 0px 10px;
 }
 .card-img{
     animation: draw 3.0s;

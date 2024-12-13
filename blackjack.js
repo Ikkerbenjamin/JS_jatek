@@ -88,6 +88,10 @@ function gameSetup() {
     dealerHand = []
     document.querySelector(".player-hand").innerHTML = ""
     document.querySelector(".dealer-hand").innerHTML = ""
+    playerAces = 0
+    dealerAces = 0
+    playerAcesUsed = 0
+    dealerAcesUsed = 0
 }
 
 function gameStart() {
@@ -117,6 +121,10 @@ function gameStart() {
         dealerDrawFaceDown()
         dealerDraw();
         playerDraw();
+        playerAces = 0
+        dealerAces = 0
+        playerAcesUsed = 0
+        dealerAcesUsed = 0
     }
 
 }
@@ -128,6 +136,10 @@ function restartGame() {
 
 function playerDraw() {
     let points = Number(document.querySelector(".player-points").innerText)
+    if (points > 21)
+    {
+        hideHit()
+    }
     if (!isStanding && isBetSet && points < 21) {
         let drawnCard = getRandomInt(deck.length);
         const newDiv = document.createElement("div");
@@ -151,10 +163,15 @@ function playerDraw() {
         newDiv.appendChild(newContent)
         currentDiv.appendChild(newDiv)
     }
+    else {
+        hideHit()
+    }
 }
 
 function dealerDraw() {
+    hideHit()
     let points = Number(document.querySelector(".dealer-points").innerText)
+    let playerPoints = Number(document.querySelector(".player-points").innerText)
     if ((shouldDealerDraw() || dealerHand.length < 2) && isBetSet && points < 21) {
         let drawnCard = getRandomInt(deck.length);
         const newDiv = document.createElement("div");
@@ -178,6 +195,12 @@ function dealerDraw() {
         const currentDiv = document.querySelector(".dealer-hand");
         newDiv.appendChild(newContent)
         currentDiv.appendChild(newDiv)
+    }
+    if (playerPoints > 21) {
+        hideHit()
+    }
+    else{
+        showHit()
     }
 }
 
@@ -260,6 +283,8 @@ function winner() {
 function showBet() {
     document.querySelector(".bet-amount").style.display = "inline"
     document.querySelector(".bet-ok").style.display = "inline"
+    hideHit()
+    hideStand()
 }
 
 function hideBet() {
@@ -267,10 +292,32 @@ function hideBet() {
     document.querySelector(".bet-ok").style.display = "none"
     document.querySelector(".button-bet").style.display = "none"
     isBetSet = true
+    showHit()
+    showStand()
 }
 
+function hideHit()
+{
+    document.querySelector(".button-hit").style.display = "none"
+}
+
+function showHit()
+{
+    document.querySelector(".button-hit").style.display = "inline"
+}
+
+function hideStand()
+{
+    document.querySelector(".button-stand").style.display = "none"
+}
+
+function showStand()
+{
+    document.querySelector(".button-stand").style.display = "inline"
+}
+
+
 function bet(input) {
-    debugger
     sleep(20).then(() => {
         betAmount = Number(input.value)
         if (betAmount > money) {
@@ -281,7 +328,7 @@ function bet(input) {
             betAmount = 0
             input.value = 0
         }
-        document.querySelector(".bet-counter").innerHTML = "Bet: <br>" + betAmount
+        document.querySelector(".bet-counter").innerHTML = "Tét: <br>" + betAmount
     });
 }
 
@@ -295,7 +342,8 @@ function resetMoney() {
 }
 
 function changeAceValue(hand, person) {
-    debugger
+    playerAces = 0
+    dealerAces = 0 
     let points = Number(document.querySelector("." + person + "-points").innerText)
     for (let index = 0; index < hand.length; index++) {
         const element = hand[index];
@@ -313,6 +361,7 @@ function changeAceValue(hand, person) {
         const element = hand[index];
         const value = element.split("_")
         if (value[2] == "ace" && points > 21) {
+            debugger
             if (person == "player" && playerAcesUsed < playerAces) {
 
                 document.querySelector("." + person + "-points").innerText = points - 10
@@ -344,6 +393,8 @@ function drawWinDecider() {
 
 function winScreen(winner) {
     money = Number(money)
+    hideHit()
+    hideStand()
     if (winner == "win") {
         document.querySelector(".dealer-status").innerText = "Vesztett"
         document.querySelector(".dealer-status").style.color = "red"
