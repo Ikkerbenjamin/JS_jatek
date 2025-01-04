@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Játékok Leírása</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigációs sáv -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">BestGames</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="informaciok.html">Információk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="szerkesztok.html">Szerkesztők</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Kezdőlap</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Fő tartalom -->
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Játékok Leírása</h1>
+        
+        <section class="game-description">
+            <div class="game-card">
+                <h2>Ping Pong Játék Leírása</h2>
+                <p>A játék egy klasszikus ping-pong stílusú képernyős játék, amelyet két játékos játszhat. Az egyik játékos irányítja a bal oldali ütőt, a másik pedig a jobb oldalit. A cél az, hogy a labdát úgy irányítsuk, hogy az áthaladjon az ellenfél oldalán, miközben elkerüljük, hogy a saját oldalunkra kerüljön.</p>
+                
+                <h3>Szabályok</h3>
+                <p><strong>Játékosok irányítása:</strong><br>
+                A bal oldali ütőt a "W" (fel) és "S" (le) billentyűkkel lehet mozgatni. A jobb oldali ütőt a felnyíl "↑" és lenyíl "↓" billentyűkkel lehet mozgatni.</p>
+
+                <p><strong>Pontszerzés:</strong><br>
+                Ha a labda áthalad az egyik játékos oldalán (a bal vagy jobb szélen), a másik játékos egy pontot szerez. A játék akkor ér véget, ha valamelyik játékos eléri a 11 pontot.</p>
+
+                <p><strong>Győzelem:</strong><br>
+                Az a játékos nyer, aki először éri el a 11 pontot. A győztes üzenet megjelenik a képernyőn, és a játék újraindítható az "Indítás" gombbal.</p>
+
+                <p><strong>Labda:</strong><br>
+                A labda folyamatosan mozog a pályán, és az ütők visszapattintják azt. Ha a labda ütközik az ütővel, az irányt változtat, és sebessége növekszik. Ha a labda eléri a pálya szélét, a megfelelő játékos pontot szerez, és a labda újra középen jelenik meg.</p>
+
+                <p><strong>Játék újraindítása:</strong><br>
+                A "Visszaállítás" majd az "Indítás" gombbal új játékot indíthatsz, ahol a pontszámok és a játékmenet kezdődnek elölről.</p>
+
+                <h3>Cél:</h3>
+                <p>A cél az, hogy megverjük az ellenfelünket azáltal, hogy több pontot szerzünk, mint ő, és elérjük a 11 pontot.</p>
+            </div>
+        </section>
+
+        <section class="game-description">
+            <div class="game-card">
+                <h2>Blackjack Játék Leírása</h2>
+                <p>A Blackjack egy kártyajáték, amelyben a cél, hogy az összértéked 21-hez legyen a legközelebb, de ne haladja meg azt. A játék során a kártyák értéke a következőképpen alakul: a számkártyák (2-10) az értéküknek megfelelően számítanak, a képes lapok (bubi, dáma, király) 10 pontot érnek, míg az ász 1 vagy 11 pontot érhet, attól függően, hogyan használjuk.</p>
+
+                <h3>Hogyan érdemes játszani?</h3>
+                <p><strong>Kezdő lapok:</strong><br>
+                A játék minden résztvevője két lapot kap, az osztó is két lapot kap, de egyiket lefelé fordítva. Az egyik lap az osztónál látható. Ekkor az első döntés következik: kívánunk-e egy újabb lapot ("húzás") vagy inkább megállunk ("maradunk")?</p>
+
+                <p><strong>Lapok értéke:</strong><br>
+                A cél, hogy a lapok összértéke ne haladja meg a 21-et. Ha túl léped, akkor automatikusan veszítettél. Az ász rugalmas, mivel 1 vagy 11 pontot érhet.</p>
+
+                <p><strong>Mi történik, ha az osztó túllép 21-et?</strong><br>
+                Ha az osztó lapjai meghaladják a 21-et, akkor minden játékos, aki nem lépte túl ezt az értéket, automatikusan nyer.</p>
+
+                <p><strong>Játékmenet:</strong><br>
+                Ha a játékos úgy dönt, hogy nem kér további lapot, a következő körben az osztó felfedheti az arccal lefelé lévő lapját, és folytathatja a játékot a szabályok szerint. Az osztó általában 17-ig "húz", de ha 17 fölé kerül, akkor a kör véget ér.</p>
+
+                <p><strong>Győzelem:</strong><br>
+                A győztes az a játékos, akinek a lapjainak összértéke közelebb van a 21-hez, mint az osztóé, de nem lépi túl a 21-et.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 mt-4">
+        <p>&copy; 2025 BestGames</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

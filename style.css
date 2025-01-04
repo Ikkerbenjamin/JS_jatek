@@ -1,0 +1,134 @@
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Legyen legalább akkora, mint a képernyő */
+}
+
+.navbar {
+    background-color: #e0e0e0 !important; /* Szürkébb háttérszín */
+}
+
+.navbar a {
+    color: black !important; /* Fekete szín */
+    text-decoration: none !important; /* Aláhúzás eltávolítása */
+}
+
+.game-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+}
+
+.game-card img {
+    width: 100%;
+    height: 300px; /* Magasabb képméret */
+    object-fit: cover;
+}
+
+.game-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.age-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    justify-content: center;
+    align-items: center;
+}
+
+.age-modal.active {
+    display: flex;
+}
+
+.disabled-card {
+    opacity: 0.5;
+    pointer-events: none;
+}
+body {
+    background-color: #f4f4f4;
+}
+.navbar {
+    background-color: #ddd;
+    padding: 15px 0;
+}
+.navbar-brand {
+    font-weight: bold;
+    color: black !important;
+}
+.nav-link {
+    color: black !important;
+    margin: 0 10px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background-color: red;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+.nav-link.active::after {
+    width: 100%;
+}
+.nav-link:hover ~ .nav-link.active::after {
+    width: 0;
+}
+.navbar-toggler {
+    border: none;
+}
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+.navbar-collapse {
+    text-align: center;
+}
+@media (max-width: 991px) {
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .nav-item {
+        margin: 10px 0;
+    }
+}
+
+html, body {
+    height: 100%; /* Biztosítjuk, hogy az egész oldal kitöltse a képernyőt */
+    margin: 0; /* Eltávolítjuk az alapértelmezett margót */
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1; /* A tartalom kitölti az elérhető helyet */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
