@@ -283,6 +283,7 @@ function winner() {
 function showBet() {
     document.querySelector(".bet-amount").style.display = "inline"
     document.querySelector(".bet-ok").style.display = "inline"
+    document.querySelector(".button-bet").style.display = "none"
     hideHit()
     hideStand()
 }
@@ -412,4 +413,14 @@ function winScreen(winner) {
         document.querySelector(".player-status").style.color = "red"
         money -= betAmount
     }
+}
+
+function isEnterPressed(asd) {
+    asd.addEventListener('keydown', (event) => {
+        if(event.key === 'Enter')
+        {
+            hideBet()
+            gameStart()
+        }
+    })
 }
