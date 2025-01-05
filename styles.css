@@ -1,0 +1,146 @@
+/* Alap beállítások */
+body {
+    background-color: #f8f9fa;
+}
+
+/* Navigációs sáv */
+.navbar {
+    background-color: #ddd;
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: black !important;
+}
+
+.nav-link {
+    color: black !important;
+    margin: 0 10px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background-color: red;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-collapse {
+    text-align: center;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .nav-item {
+        margin: 10px 0;
+    }
+}
+
+/* Játékleírások */
+.game-card {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.game-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.game-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.game-description h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.game-description h3 {
+    font-size: 1.5em;
+    color: #444;
+    margin-top: 20px;
+}
+
+.game-description p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.game-description strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Modal */
+.age-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    justify-content: center;
+    align-items: center;
+}
+
+.age-modal.active {
+    display: flex;
+}
+
+.disabled-card {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}

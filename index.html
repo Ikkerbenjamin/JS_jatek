@@ -5,80 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BestGames</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .navbar {
-            background-color: #e0e0e0 !important; /* Szürkébb háttérszín */
-        }
-
-        .navbar a {
-            color: black !important; /* Fekete szín */
-            text-decoration: none !important; /* Aláhúzás eltávolítása */
-        }
-
-        .game-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            text-align: center;
-            transition: box-shadow 0.3s ease;
-            cursor: pointer;
-            height: 100%;
-        }
-
-        .game-card img {
-            width: 100%;
-            height: 300px; /* Magasabb képméret */
-            object-fit: cover;
-        }
-
-        .game-card:hover {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .age-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1050;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .age-modal.active {
-            display: flex;
-        }
-
-        .disabled-card {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#">BestGames</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Információk</a>
+                        <a class="nav-link" href="informaciok.html">Információk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Szerkesztők</a>
+                        <a class="nav-link" href="szerkesztok.html">Szerkesztők</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-dark text-white px-3" href="#">Kezdőlap</a>
+                        <a class="nav-link active" href="index.html">Kezdőlap</a>
                     </li>
                 </ul>
             </div>
@@ -153,8 +98,11 @@
             blackjackCard.classList.add('disabled-card');
             blackjackDescription.textContent = "Ezzel a játékkal nem játszhatsz.";
         });
-    </script>
 
+    </script>
+    <footer class="text-center py-4 mt-4">
+        <p>&copy; 2025 BestGames</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
