@@ -27,7 +27,7 @@
             <div class="player-points">0</div>
         </div>
     </div>
-    <div class="player-money">Pénz: <br></div>
+    <div class="player-money">Pénz: <br> 1000</div>
     <div class="bet-counter"> Tét: <br> 100</div>
     <div class="buttons-centerer">
         <div class="buttons">
@@ -37,7 +37,7 @@
             <button class="button-bet" onclick="showBet()"><h1>Fogad</h1></button>
         </div>
     </div>
-    <input type="number" class="bet-amount" onkeypress="bet(this)">
+    <input type="number" class="bet-amount" onkeypress="bet(this), isEnterPressed(this)" >
     <button class="bet-ok" onclick="hideBet(), gameStart()">OK</button>
     <script src="blackjack.js"></script>
 </body>
